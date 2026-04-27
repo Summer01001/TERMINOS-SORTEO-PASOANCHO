@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Términos y Condiciones | El Prestigio</title>
+    <style>
+      :root {
+        --primary-cyan: #00d2ff;
+        --primary-blue: #30477b;
+        --accent-red: #ff3333;
+        --dark-bg: #050a10;
+        --panel-bg: #10161d;
+        --border-glow: 0 0 15px rgba(0, 210, 255, 0.4);
+      }
+
+      body {
+        background-color: var(--dark-bg);
+        color: #e0e0e0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        line-height: 1.6;
+        background-image: radial-gradient(
+          circle at 50% 50%,
+          #0d1b2a 0%,
+          #050a10 100%
+        );
+      }
+
+      /* HEADER ESTILO TI / GAMER */
+      header {
+        background: var(--panel-bg);
+        padding: 50px 20px;
+        text-align: center;
+        border-bottom: 3px solid var(--primary-cyan);
+        box-shadow: var(--border-glow);
+      }
+
+      .brand-header {
+        font-size: 2.5rem;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        margin: 0;
+        text-shadow: 2px 2px var(--primary-blue);
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 20px;
+      }
+
+      /* TARJETAS DE DATOS */
+      .card {
+        background: var(--panel-bg);
+        border: 1px solid #1e2a38;
+        border-radius: 4px;
+        padding: 30px;
+        margin-bottom: 30px;
+        position: relative;
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: var(--primary-cyan);
+      }
+
+      h2 {
+        color: var(--primary-cyan);
+        text-transform: uppercase;
+        border-bottom: 1px solid #1e2a38;
+        padding-bottom: 10px;
+        margin-top: 0;
+      }
+
+      /* ESTILO DE PREMIOS */
+      .prize-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+      }
+
+      .prize-item {
+        background: #16212e;
+        padding: 20px;
+        border-radius: 8px;
+        border: 1px solid var(--primary-blue);
+        text-align: center;
+      }
+
+      .prize-value {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #fff;
+        display: block;
+      }
+
+      /* PASOS DE PARTICIPACIÓN */
+      .step-box {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 20px;
+        padding: 15px;
+        background: rgba(48, 71, 123, 0.1);
+        border-radius: 5px;
+      }
+
+      .step-number {
+        background: var(--primary-cyan);
+        color: var(--dark-bg);
+        font-weight: bold;
+        min-width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 15px;
+      }
+
+      /* ALERTAS */
+      .warning-box {
+        border: 1px solid var(--accent-red);
+        background: rgba(255, 51, 51, 0.1);
+        padding: 20px;
+        color: #ffcccc;
+        border-radius: 4px;
+      }
+
+      footer {
+        text-align: center;
+        padding: 40px;
+        color: #556677;
+        font-family: monospace;
+      }
+
+      .legal-highlight {
+        font-weight: bold;
+        color: var(--primary-cyan);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1 class="brand-header">Sorteo El Mejor Regalo para Papá!</h1>
+      <p style="color: var(--primary-cyan); letter-spacing: 2px">
+        PROTOCOLO: COMPRAVENTAS EL PRESTIGIO
+      </p>
+    </header>
+
+    <div class="container">
+      <div class="card">
+        <h2>1. Premios Oficiales</h2>
+        <div class="prize-list">
+          <div class="prize-item">
+            <span>1er Lugar</span>
+            <span class="prize-value">$300.000 COP</span>
+          </div>
+          <div class="prize-item">
+            <span>2do Lugar</span>
+            <span class="prize-value">$200.000 COP</span>
+          </div>
+          <div class="prize-item">
+            <span>3er Lugar</span>
+            <span class="prize-value">$100.000 COP</span>
+          </div>
+        </div>
+        <p style="font-size: 0.9rem; margin-top: 15px">
+          Se entregarán tres premios en efectivo a tres ganadores distintos.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>2. Mecánica de Participación</h2>
+        <p>
+          Para que tu participación sea válida, debes cumplir estos 4 pasos
+          obligatorios:
+        </p>
+
+        <div class="step-box">
+          <div class="step-number">1</div>
+          <div>
+            <strong>Foto:</strong> Tómate una foto creativa frente a la fachada
+            de cualquiera de nuestras sedes (Pasoancho, Calima, Caney, Veracruz,
+            Poblado, Atenas y López).
+          </div>
+        </div>
+
+        <div class="step-box">
+          <div class="step-number">2</div>
+          <div>
+            <strong>Publicar y Etiquetar:</strong> Sube la foto a tu Instagram,
+            facebook o TikTok (post o reel) etiquetando a
+            <span class="legal-highlight">@CompraventaPasoancho</span>.
+          </div>
+        </div>
+
+        <div class="step-box">
+          <div class="step-number">3</div>
+          <div>
+            <strong>Comentar:</strong> En el post oficial del sorteo, etiqueta a
+            2 amigos o familiares (no valen cuentas de famosos ni empresas).
+          </div>
+        </div>
+
+        <div class="step-box">
+          <div class="step-number">4</div>
+          <div>
+            <strong>Seguir:</strong> Debes ser seguidor de nuestra cuenta
+            oficial de El Prestigio Pasoancho.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>3. Sistema de Clasificación</h2>
+        <p>
+          Los 10 participantes que logren la mayor cantidad de interacciones
+          orgánicas (Likes y Comentarios reales) en su foto, pasarán a la Gran
+          Final para el primer premio de $300.000.
+        </p>
+
+        <div class="warning-box">
+          <strong>OJO:</strong> El uso de bots o compra de seguidores/likes está
+          estrictamente prohibido. Si detectamos actividad inusual, la cuenta
+          será descalificada automáticamente para proteger la transparencia del
+          negocio.
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>4. Selección de Ganadores</h2>
+        <p>
+          La organización realizará un análisis interno de la actividad y
+          cumplimiento de requisitos para seleccionar al grupo de finalistas.
+        </p>
+        <ul>
+          <li>
+            Los nombres de los finalistas serán ingresados en una plataforma de
+            selección aleatoria.
+          </li>
+          <li>
+            El sorteo se realizará el día
+            <span class="legal-highlight">Sábado 20 de junio</span> a través de
+            un Live en Instagram/Facebook/TikTok.
+          </li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>5. Restricciones y Entrega</h2>
+        <p>
+          Si tu cuenta es privada, debes enviar un pantallazo o link de tu
+          publicación por mensaje directo (DM) junto con tu Nombre completo,
+          Cédula y Número Telefónico para el registro.
+        </p>
+        <div
+          style="
+            background: rgba(0, 210, 255, 0.05);
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid var(--primary-cyan);
+          "
+        >
+          <p>
+            <strong>REGLA DE ORO:</strong> Los premios se entregarán
+            <span class="legal-highlight"
+              >físicamente y de forma obligatoria en la sede Pasoancho</span
+            >. El ganador deberá presentar su cédula original y permitir el
+            registro en video para dar fe de la entrega.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      SISTEMA DE GESTIÓN EL PRESTIGIO // VER 2026.4.27 // CALI, COLOMBIA
+    </footer>
+  </body>
+</html>
