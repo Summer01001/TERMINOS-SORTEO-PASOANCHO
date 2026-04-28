@@ -1,75 +1,71 @@
 import pandas as pd
 import random
-import time
 import os
 
-# Configuración de rutas (Saliendo de 'script' hacia 'data')
-RUTA_GENERAL = os.path.join('..', 'data', 'participantes_general.csv')
-RUTA_ELITE = os.path.join('..', 'data', 'finalistas_elite.csv')
+# --- 1. RUTAS ABSOLUTAS (Directo al grano) ---
+# Usamos 'r' al principio para que Python entienda bien las barras invertidas \
+RUTA_GENERAL = r'C:\Users\BRAYAN DUQUE\OneDrive\Documentos\SORTEO_PASOANCHO_PRESTIGIO\DATA\participantes_general.csv'
+RUTA_ELITE = r'C:\Users\BRAYAN DUQUE\OneDrive\Documentos\SORTEO_PASOANCHO_PRESTIGIO\DATA\finalistas_elite.csv'
 
-def cargar_nombres(ruta, rango_inicio, rango_fin):
+def cargar_datos(ruta):
     try:
-        # Leemos el CSV, saltamos las primeras 5 filas (empieza en la 6)
-        # El rango A6-A10 en Python se traduce como filas 0 a 4 después del salto
-        df = pd.read_csv(ruta, skiprows=5, header=None, sep=';', names=['NOMBRE', 'CEDULA', 'CONTACTO', 'LINK', 'SEDE', 'CUMPLE'])
+        if not os.path.exists(ruta):
+            print(f"❌ No se encontró el archivo en: {os.path.abspath(ruta)}")
+            return []
         
-        # Tomamos solo el rango que pediste (A6 a A10)
-        # En pandas, .iloc[0:5] toma las primeras 5 filas de la data cargada
-        nombres = df['NOMBRE'].iloc[0:5].tolist()
-        return [n for n in nombres if str(n) != 'nan'] # Limpiamos celdas vacías
+        # Leemos desde la fila 2 (skiprows=1) hasta la 10 (nrows=9)
+        # sep=None detecta automáticamente si usas coma o punto y coma
+        df = pd.read_csv(ruta, skiprows=1, nrows=9, header=None, sep=None, engine='python')
+        
+        # Tomamos la columna A (índice 0) y limpiamos celdas vacías
+        lista = df[0].dropna().tolist()
+        return [str(n).strip() for n in lista if str(n).strip() != '']
     except Exception as e:
-        print(f"Error cargando archivo: {e}")
+        print(f"❌ Error al leer {ruta}: {e}")
         return []
 
-def realizar_sorteo(lista, premio):
-    print(f"\n--- INICIANDO SORTEO PARA: {premio} ---")
-    print("Cargando participantes...")
-    time.sleep(1)
+# --- 2. CARGA DE LISTAS ---
+participantes_general = cargar_datos(RUTA_GENERAL)
+participantes_elite = cargar_datos(RUTA_ELITE)
+
+def realizar_sorteo(lista, nombre_sorteo):
+    if not lista:
+        print(f"\n⚠️ La lista de {nombre_sorteo} está vacía.")
+        return
     
-    # Efecto de animación "itinerante"
-    for _ in range(10):
-        print(f"Buscando... {random.choice(lista)}", end="\r")
-        time.sleep(0.1)
+    print(f"\n--- {nombre_sorteo.upper()} ---")
+    print(f"Participantes en tómbola: {lista}")
+    input("Presiona ENTER para elegir ganador... 🎰")
     
     ganador = random.choice(lista)
-    print(f"\n¡GANADOR(A): {ganador.upper()}! 🎉")
-    lista.remove(ganador) # Eliminamos al ganador para que no repita
-    return ganador
-
-def menu():
-    # Cargamos las listas iniciales
-    lista_general = cargar_nombres(RUTA_GENERAL, 6, 10)
-    lista_elite = cargar_nombres(RUTA_ELITE, 6, 10)
+    lista.remove(ganador) # Se elimina para que no repita premio
     
-    ganadores_historial = []
+    print("\n" + "⭐" * 40)
+    print(f"🏆 EL GANADOR ES: {ganador.upper()}")
+    print("⭐" * 40)
+    print(f"Quedan {len(lista)} personas para el próximo turno.")
 
-    while True:
-        print("\n=== SISTEMA DE SORTEOS EL PRESTIGIO ===")
-        print("1. Realizar 1er Sorteo (General)")
-        print("2. Realizar 2do Sorteo (General - Sin ganador anterior)")
-        print("3. Realizar 3er Sorteo (ELITE - Premio Mayor)")
-        print("4. Ver lista de ganadores de hoy")
-        print("5. Salir")
-        
-        opcion = input("\nSeleccione una opción: ")
-
-        if opcion == '1' and lista_general:
-            ganador = realizar_sorteo(lista_general, "Primer Premio")
-            ganadores_historial.append(f"1er Premio: {ganador}")
-        elif opcion == '2' and lista_general:
-            ganador = realizar_sorteo(lista_general, "Segundo Premio")
-            ganadores_historial.append(f"2do Premio: {ganador}")
-        elif opcion == '3' and lista_elite:
-            ganador = realizar_sorteo(lista_elite, "PREMIO MAYOR 300K")
-            ganadores_historial.append(f"Premio Mayor: {ganador}")
-        elif opcion == '4':
-            print("\n--- HISTORIAL DE HOY ---")
-            for g in ganadores_historial: print(g)
-        elif opcion == '5':
-            print("Cerrando sistema. ¡Buena suerte!")
-            break
-        else:
-            print("Opción no válida o lista vacía.")
-
-if _name_ == "_main_":
-    menu()
+# --- 3. MENÚ PRINCIPAL ---
+while True:
+    print("\n" + "="*40)
+    print("   SORTEOS EL PRESTIGIO DE PASOANCHO")
+    print("="*40)
+    print(f"1. Sorteo GENERAL (Quedan: {len(participantes_general)})")
+    print(f"2. Sorteo ÉLITE   (Quedan: {len(participantes_elite)})")
+    print("3. Ver quiénes faltan por pasar")
+    print("4. Salir")
+    
+    opcion = input("\n¿Qué sorteo quieres realizar primero?: ")
+    
+    if opcion == "1":
+        realizar_sorteo(participantes_general, "Sorteo General")
+    elif opcion == "2":
+        realizar_sorteo(participantes_elite, "Sorteo Élite")
+    elif opcion == "3":
+        print(f"\nLista General: {participantes_general}")
+        print(f"Lista Élite: {participantes_elite}")
+    elif opcion == "4":
+        print("Cerrando sistema. ¡Buena suerte!")
+        break
+    else:
+        print("Opción no válida.")
