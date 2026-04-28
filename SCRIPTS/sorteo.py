@@ -1,11 +1,13 @@
 import pandas as pd
 import random
 import os
+from dotenv import load_dotenv
 
-# --- 1. RUTAS ABSOLUTAS (Directo al grano) ---
-# Usamos 'r' al principio para que Python entienda bien las barras invertidas \
-RUTA_GENERAL = r'C:\Users\BRAYAN DUQUE\OneDrive\Documentos\SORTEO_PASOANCHO_PRESTIGIO\DATA\participantes_general.csv'
-RUTA_ELITE = r'C:\Users\BRAYAN DUQUE\OneDrive\Documentos\SORTEO_PASOANCHO_PRESTIGIO\DATA\finalistas_elite.csv'
+#cargamos las rutas desde la caja fuerte (.env) 
+load_dotenv()
+
+RUTA_GENERAL = os.getenv("RUTA_GENERAL")
+RUTA_ELITE = os.getenv("RUTA_ELITE")
 
 def cargar_datos(ruta):
     try:
@@ -15,7 +17,7 @@ def cargar_datos(ruta):
         
         # Leemos desde la fila 2 (skiprows=1) hasta la 10 (nrows=9)
         # sep=None detecta automáticamente si usas coma o punto y coma
-        df = pd.read_csv(ruta, skiprows=1, nrows=9, header=None, sep=None, engine='python')
+        df = pd.read_csv(ruta, skiprows=1, nrows=1000, header=None, sep=None, engine='python')
         
         # Tomamos la columna A (índice 0) y limpiamos celdas vacías
         lista = df[0].dropna().tolist()

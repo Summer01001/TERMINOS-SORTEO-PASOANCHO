@@ -1,0 +1,9 @@
+# Ignorar la caja fuerte
+.env
+
+# Ignorar los datos de los clientes
+DATA/
+
+# Ignorar carpetas temporales de Python
+_pycache_/
+*.pyc
